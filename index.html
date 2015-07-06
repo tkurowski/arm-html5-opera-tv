@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TV performance</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <script>
+  var conf = (function () {
+      var conf = {};
+      var query = location.search;
+
+      if (!query) return conf;
+      else query = query.substr(1);
+
+      var parts = query.split('&');
+
+      parts.forEach(function (part) {
+          var kv = part.split('=');
+          conf[kv[0]] = kv[1] || true;
+      });
+      return conf;
+  })();
+
+  (function () {
+      var style = conf.style;
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = style + ".css";
+      document.head.appendChild(link);
+  })();
+  </script>
+
+</head>
+<body>
+  <div id="container">
+    <div id="output"></div>
+    <div id="box">
+      <div class="tile">
+            <section class="gpx">
+              <img class="thumb" src="" alt=""/>
+            </section>
+            <section class="text">
+              <span class="title"></span>
+            </section>
+            <div class="data" style="visibility: hidden">
+            </div>
+      </div>
+    </div>
+  </div>
+  <script src="tiles.js"></script>
+</body>
+</html>
